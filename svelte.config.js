@@ -10,11 +10,11 @@ const config = {
 		vitePreprocess(),
 		mdsvex({
 			extensions: [".svx", ".md"],
-		 smartypants: {
-        dashes: 'oldschool'
-      },
+			smartypants: {
+				dashes: "oldschool",
+			},
 			layout: {
-				_: "./src/lib/components/MarkdownLayout.svelte",
+				_: `${import.meta.dirname}/src/lib/components/MarkdownLayout.svelte`,
 			},
 		}),
 	],
