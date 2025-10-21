@@ -9,8 +9,5 @@ declare global {
 		// interface Platform {}
 	}
 }
-declare module "*.svx" {
-	export const metadata: Record<string, unknown>;
-	export default class Component extends import("svelte").SvelteComponent {}
-}
+
 export {};

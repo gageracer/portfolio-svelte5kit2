@@ -1,7 +1,7 @@
 <script lang="ts">
   import Layout from '$lib/components/Layout.svelte';
   import { getPosts } from '$lib/posts';
-  
+
   const posts = getPosts();
 </script>
 
