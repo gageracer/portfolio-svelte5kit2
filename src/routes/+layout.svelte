@@ -2,6 +2,7 @@
 	import { onNavigate } from '$app/navigation';
 	import '../app.css';
 	import { page } from '$app/state';
+	import { resolve } from '$app/paths';
 
 	let { children } = $props();
 	let imgHover = $state(false);
@@ -15,9 +16,19 @@
 
 		return clearInterval(count);
 	};
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
-<div class="from-primary to-secondary text-text min-h-screen bg-gradient-to-br">
+<div class="from-primary to-secondary text-text min-h-screen bg-linear-to-br">
 	<main class="container mx-auto px-4 py-8">
 		<div class="container mx-auto max-w-2xl px-4 py-8">
 			<header class="flex flex-col items-center">
@@ -34,12 +45,12 @@
 					<h1 class="text-4xl font-bold">{name}</h1>
 				{:else}
 					<div class="mb-4">
-						<a href="/">
+						<a href={resolve("/")}>
 							<img src="/images/profile.jpeg" alt={name} class="h-24 w-24 rounded-full shadow-md" />
 						</a>
 					</div>
 					<h2 class="text-2xl font-bold">
-						<a href="/" class="text-text hover:no-underline">{name}</a>
+						<a href={resolve("/")} class="text-text hover:no-underline">{name}</a>
 					</h2>
 				{/if}
 			</header>
