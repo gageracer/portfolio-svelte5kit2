@@ -1,31 +1,31 @@
 <script lang="ts">
-	import { onNavigate } from '$app/navigation';
-	import '../app.css';
-	import { page } from '$app/state';
-	import { resolve } from '$app/paths';
+import { onNavigate } from "$app/navigation";
+import "../app.css";
+import { resolve } from "$app/paths";
+import { page } from "$app/state";
 
-	let { children } = $props();
-	let imgHover = $state(false);
-	const home = $derived(page.url.pathname === '/');
-	const name = 'John Can Aygin';
+const { children } = $props();
+let imgHover = $state(false);
+const home = $derived(page.url.pathname === "/");
+const name = "John Can Aygin";
 
-	const pictureAnimate = () => {
-		const count = setInterval(() => {
-			imgHover = true;
-		}, 4000);
+const pictureAnimate = () => {
+	const count = setInterval(() => {
+		imgHover = true;
+	}, 4000);
 
-		return clearInterval(count);
-	};
-	onNavigate((navigation) => {
-		if (!document.startViewTransition) return;
+	return clearInterval(count);
+};
+onNavigate((navigation) => {
+	if (!document.startViewTransition) return;
 
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
-			});
+	return new Promise((resolve) => {
+		document.startViewTransition(async () => {
+			resolve();
+			await navigation.complete;
 		});
 	});
+});
 </script>
 
 <div class="from-primary to-secondary text-text min-h-screen bg-linear-to-br">
