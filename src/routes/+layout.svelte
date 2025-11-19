@@ -19,16 +19,16 @@ const pictureAnimate = () => {
 onNavigate((navigation) => {
 	if (!document.startViewTransition) return;
 
-	return new Promise((resolve) => {
-		document.startViewTransition(async () => {
-			resolve();
-			await navigation.complete;
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
 		});
 	});
-});
 </script>
 
-<div class="from-primary to-secondary text-text min-h-screen bg-linear-to-br">
+<div class="min-h-screen bg-gradient-to-br from-primary to-secondary text-text">
 	<main class="container mx-auto px-4 py-8">
 		<div class="container mx-auto max-w-2xl px-4 py-8">
 			<header class="flex flex-col items-center">
